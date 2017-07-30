@@ -1,0 +1,16 @@
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+        {% if user.is_active %}
+        <li><a href="#">My Messages</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="#">Logout</a></li>
+        {% else %}
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a></li>
+        {% endif %}
+        <li><a href="{% url 'core:about' %}">About Us</a></li>
+        <li><a href="{% url 'core:contact' %}">Contact Us</a></li>
+    </ul>
+</div>
+<!-- /.navbar-collapse -->
