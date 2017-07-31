@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col col-sm-12 col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Settings</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation" {% if setting == "profile" %} class="active" {% endif %}><a href="{% url 'account:settings' 'profile' %}"><i class="fa fa-user" aria-hidden="true"></i> Personal Information</a></li>
+                        <li role="presentation" {% if setting == "changePassword" %} class="active" {% endif %}><a href="{% url 'account:settings' 'changePassword' %}"><i class="fa fa-lock" aria-hidden="true"></i> Password</a></li>
+                        <li role="presentation" {% if setting == "removeProfile" %} class="active" {% endif %}><a href="{% url 'account:settings' 'removeProfile' %}"><i class="fa fa-user-times" aria-hidden="true"></i> Remove Account</a></li>
+                        <li role="presentation"><a href="{% url 'account:dashboard' %}"><i class="fa fa-comments" aria-hidden="true"></i> Back to Messages</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col col-sm-12 col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {% bootstrap_messages %}
+                    {% include template %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

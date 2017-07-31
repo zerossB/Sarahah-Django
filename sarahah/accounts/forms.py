@@ -41,3 +41,16 @@ class RegisterUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'name', 'email', 'profilePic']
+
+
+class EditUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('name', 'email', 'profilePic')
+
+class RemoveProfileForm(forms.Form):
+    really = forms.BooleanField(
+        label=("I'm sure I want to delete my account"),
+        required=True,
+        help_text=("Are you sure you want to delete your account?"),
+    )

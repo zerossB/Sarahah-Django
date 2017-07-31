@@ -2,8 +2,8 @@
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
         {% if user.is_active %}
-        <li><a href="#">My Messages</a></li>
-        <li><a href="#">Settings</a></li>
+        <li><a href="{% url 'account:dashboard' %}">My Messages</a></li>
+        <li><a href="{% url 'account:settings' 'profile' %}">Settings</a></li>
         <li><a href="{% url 'account:logout' %}">Logout</a></li>
         {% else %}
         <li><a href="{% url 'account:login' %}">Login</a></li>
