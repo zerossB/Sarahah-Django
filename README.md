@@ -4,6 +4,12 @@ An implementation of sarahah in django
 ## About
 After a few days studying django, I decided to do an implementation of sarahah. I had about 10 hours of code (because I'm not so accustomed to his API auehhuea), but the result was similar in appearance.
 
+## Technologies Used
+
+* Font Awesome
+* Bootstrap
+* Django
+
 ## Pictures
 ![](https://github.com/zerossB/Sarahah-Django/blob/master/pictures/index.png?raw=true)
 
