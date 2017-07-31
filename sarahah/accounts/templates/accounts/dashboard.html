@@ -8,15 +8,17 @@
     <div class="panel panel-default">
         <div class="panel-body text-center">
             <p><img src="{{ user.profilePic.url }}" alt="{{ user.username }}" class="img-circle img-profile"></p>
-            <p><b>{{ user.name | title}}</b></p>
+            <p><a href="{% url 'account:settings' 'profile' %}"><i class="fa fa-cog" aria-hidden="true"></i></a> <b>{{ user.name | title}}</b></p>
             <p><b>Messages: </b></p>
-            <p><a href="https://sarahah.com/{{ user.username }}">https://sarahah.com/{{ user.username }}</a></p>
+            <p><a href="{% url 'pubProfile' user.username %}">https://sarahah.com/{{ user.username }}/</a></p>
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="text-center">
                 <h2> <i class="fa fa-comments" aria-hidden="true"></i> Messages</h2>
+            </div>
+            <div>
                 <br>
                 <ul class="nav nav-tabs nav-justified">
                     <li class="active"><a data-toggle="tab" href="#received">Received</a></li>
@@ -26,9 +28,26 @@
 
                 <div class="tab-content">
                     <div id="received" class="tab-pane fade in active">
-                        <h3>HOME</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua.</p>
+                        {% for message in smessages %}
+                        <br>
+                        <div class="panel panel-default">
+                            <div class="panel-body row">
+                                <div class="col col-sm-10">
+                                    <p>{{message.message}}</p>
+                                    <br>
+                                </div>
+                                <div class="col col-sm-2 text-right">
+                                    <a href="#" class="btn btn-default"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="col col-sm-10">
+                                    <p class="text-muted">{{ message.date_joined }}</p>
+                                </div>
+                                <div class="col col-sm-2 text-right">
+                                    <a href="#" class="btn btn-default"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
                     <div id="favorites" class="tab-pane fade">
                         <h3>Menu 1</h3>

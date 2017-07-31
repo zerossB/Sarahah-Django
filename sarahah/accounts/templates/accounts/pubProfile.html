@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+{% load bootstrap3 %}
+<div class="container">
+    {% bootstrap_messages %}
+    <div class="panel panel-default">
+        <div class="panel-body text-center">
+            <p><img src="{{ received.profilePic.url }}" alt="{{ received.username }}" class="img-circle img-profile"></p>
+            <p><b>{{ received.name | title}}</b></p>
+            <p>Leave a constructive message :)</p>
+            <hr>
+            <div class="row">
+                <div class="col col-sm-12 col-md-6 col-md-offset-3">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <br>
+                        {% buttons %}
+                            <button type="submit" class="btn btn-primary">
+                                Send {% bootstrap_icon "send" %}
+                            </button>
+                        {% endbuttons %}
+                    </form>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).on("input", "#id_message", function () {
+        var limite = 255;
+        var caracteresDigitados = $(this).val().length;
+        var caracteresRestantes = limite - caracteresDigitados;
+
+        $(".help-block").text("You have "+caracteresRestantes+" characters remainings");
+    });
+</script>
+{% endblock %}

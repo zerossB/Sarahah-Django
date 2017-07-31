@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'sarahah.core',
     'sarahah.accounts',
+    'sarahah.smessages',
 ]
 
 MIDDLEWARE = [

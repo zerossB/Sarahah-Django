@@ -8,13 +8,20 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegisterUserForm, EditUserForm, RemoveProfileForm
 from .models import User
 
+from sarahah.smessages.forms import SendMessage
+from sarahah.smessages.models import Messages
+
 # Create your views here.
 
 
 @login_required
 def dashboard(request):
     template_name = "accounts/dashboard.html"
-    return render(request, template_name)
+    messages = request.user.received.all()
+    context = {
+        'smessages': messages
+    }
+    return render(request, template_name, context)
 
 
 def register(request):
@@ -107,3 +114,27 @@ def removeProfile(request):
             return redirect('core:home')
     else:
         messages.error(request, "Error 404, Not accessible method")
+
+
+def pubProfile(request, profile):
+    template_name = "accounts/pubProfile.html"
+    received = get_object_or_404(User, username=profile)
+
+    if request.method == "POST":
+        form = SendMessage(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.received = received
+            form.sender = User.objects.all()[0]
+            form.save()
+            messages.success(
+                request, 'Message sent successfully!')
+            return redirect('pubProfile', received.username)
+    else:
+        form = SendMessage()
+
+    context = {
+        'received': received,
+        'form': form
+    }
+    return render(request, template_name, context)

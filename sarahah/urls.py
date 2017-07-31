@@ -21,12 +21,17 @@ from django.conf import settings
 from sarahah.core import urls as core
 from sarahah.accounts import urls as accounts
 
+from sarahah.accounts.views import pubProfile
+
 urlpatterns = [
     url(r'', include(core, namespace="core")),
     url(r'^admin/', admin.site.urls),
     url(r'accounts/', include(accounts, namespace="account")),
+    url(r'^(?P<profile>[\w0-9_-]+)/$', pubProfile, name='pubProfile'),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
