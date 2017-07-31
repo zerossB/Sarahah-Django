@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'bootstrap3',
     'sarahah.core',
+    'sarahah.accounts',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'sarahah', 'media')
 MEDIA_URL = '/media/'
+
+LOGIN_URL = "account:login"
+LOGIN_REDIRECT_URL = "account:dashboard"
+LOGOUT_URL = "account:logout"
+AUTH_USER_MODEL = 'accounts.User'

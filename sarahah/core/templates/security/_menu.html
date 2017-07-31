@@ -4,10 +4,10 @@
         {% if user.is_active %}
         <li><a href="#">My Messages</a></li>
         <li><a href="#">Settings</a></li>
-        <li><a href="#">Logout</a></li>
+        <li><a href="{% url 'account:logout' %}">Logout</a></li>
         {% else %}
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Register</a></li>
+        <li><a href="{% url 'account:login' %}">Login</a></li>
+        <li><a href="{% url 'account:register' %}">Register</a></li>
         {% endif %}
         <li><a href="{% url 'core:about' %}">About Us</a></li>
         <li><a href="{% url 'core:contact' %}">Contact Us</a></li>

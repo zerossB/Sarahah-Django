@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body text-center">
+            <img src="{{ user.profilePic.url }}" alt="{{ user.username }}" class="img-circle img-profile">
+            <p><b>{{ user.name }}</b></p>
+            <p><b>Messages: </b></p>
+            <p><a href="https://sarahah.com/{{ user.username }}">https://sarahah.com/{{ user.username }}</a></p>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="text-center">
+                <h2> {% bootstrap_icon "comment" %} Messages</h2>
+                <br>
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="active"><a data-toggle="tab" href="#received">Received</a></li>
+                    <li><a data-toggle="tab" href="#favorites">Favorites</a></li>
+                    <li><a data-toggle="tab" href="#sent">Sent</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="received" class="tab-pane fade in active">
+                        <h3>HOME</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                            et dolore magna aliqua.</p>
+                    </div>
+                    <div id="favorites" class="tab-pane fade">
+                        <h3>Menu 1</h3>
+                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat.</p>
+                    </div>
+                    <div id="sent" class="tab-pane fade">
+                        <h3>Menu 2</h3>
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                            totam rem aperiam.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

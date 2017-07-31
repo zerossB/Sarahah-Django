@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}
+- Login
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col col-sm-12 col-md-4 col-md-offset-4">
+        {% if request.user.is_authenticated %}
+        <h2>Você ja esta logado, por favor vá para a pagina inicial</h2>
+        <p><a href="{% url 'core:home' %}" class="btn btn-warning">Pagina Inicial</a></p>
+        {% else %}
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Login</h3>
+            </div>
+            <div class="panel-body">
+                {% bootstrap_messages %}
+                <form method="POST">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <br>
+                    {% buttons %}
+                        <button type="submit" class="btn btn-primary">
+                            Send {% bootstrap_icon "send" %}
+                        </button>
+                    {% endbuttons %}
+                </form>
+                <br>
+                <p><b>Esqueceu sua senha?</b> <a href="">Recuperar Senha</a> </p>
+                <p><b>Novo por aqui?</b> <a href="">Inscrever-se</a> </p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
