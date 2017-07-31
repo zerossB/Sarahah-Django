@@ -20,6 +20,7 @@ from django.conf import settings
 
 from sarahah.core import urls as core
 from sarahah.accounts import urls as accounts
+from sarahah.smessages import urls as messages
 
 from sarahah.accounts.views import pubProfile
 
@@ -27,6 +28,7 @@ urlpatterns = [
     url(r'', include(core, namespace="core")),
     url(r'^admin/', admin.site.urls),
     url(r'accounts/', include(accounts, namespace="account")),
+    url(r'messages/', include(messages, namespace="message")),
     url(r'^(?P<profile>[\w0-9_-]+)/$', pubProfile, name='pubProfile'),
 ]
 

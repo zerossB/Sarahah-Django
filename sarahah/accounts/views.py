@@ -17,9 +17,14 @@ from sarahah.smessages.models import Messages
 @login_required
 def dashboard(request):
     template_name = "accounts/dashboard.html"
-    messages = request.user.received.all()
+    received = request.user.received.all().order_by('-date_joined')
+    send = request.user.sender.all().order_by('-date_joined')
+    favorites = request.user.received.filter(favorite=True).order_by('-date_joined')
+
     context = {
-        'smessages': messages
+        'received': received,
+        'sender': send,
+        'favorites': favorites
     }
     return render(request, template_name, context)
 
@@ -125,7 +130,10 @@ def pubProfile(request, profile):
         if form.is_valid():
             form = form.save(commit=False)
             form.received = received
-            form.sender = User.objects.all()[0]
+            if request.user.is_authenticated  :
+                form.sender = request.user
+            else:
+                form.sender = User.objects.all()[0]
             form.save()
             messages.success(
                 request, 'Message sent successfully!')
